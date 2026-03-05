@@ -50,5 +50,13 @@ En fase inicial. Se esta definiendo arquitectura, alcance del MVP y experiencia 
 python -m venv .venv
 source .venv/bin/activate
 pip install -e .
+ollama serve
+ollama pull qwen3:8b
 constela natal
+```
+
+Puedes cambiar modelo o endpoint:
+
+```bash
+constela natal --model qwen3:8b --ollama-url http://localhost:11434
 ```
