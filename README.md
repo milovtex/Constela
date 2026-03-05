@@ -60,3 +60,9 @@ Puedes cambiar modelo o endpoint:
 ```bash
 constela natal --model qwen3:8b --ollama-url http://localhost:11434
 ```
+
+Para desactivar los paneles ASCII de signos:
+
+```bash
+constela natal --no-ascii
+```

@@ -10,6 +10,7 @@ from constela.llm import LLMError, OllamaClient
 from constela.models import BirthData
 from constela.prompting import build_interpretation_prompt
 from constela.ui import console
+from constela.zodiac_ascii import render_sign_ascii
 
 
 def _prompt_required(label: str) -> str:
@@ -29,10 +30,10 @@ def _prompt_float_or_empty(label: str) -> float | None:
         raise typer.BadParameter(f"{label} debe ser numero decimal") from exc
 
 
-@natal_app.command("run")
 def natal_run(
     model: str = typer.Option("qwen3:8b", "--model", help="Modelo disponible en Ollama"),
     ollama_url: str = typer.Option("http://localhost:11434", "--ollama-url", help="URL base de Ollama"),
+    no_ascii: bool = typer.Option(False, "--no-ascii", help="Desactiva el arte ASCII de signos"),
 ) -> None:
     """Flujo MVP de captura de datos natales y lectura con LLM."""
     console.print(Panel("Vamos a construir tu carta natal", border_style="cyan"))
@@ -101,6 +102,13 @@ def natal_run(
         summary.add_row("Luna", chart.moon.sign or "-", chart.moon.house or "-")
     summary.add_row("Ascendente", chart.ascendant or "-", "-")
     console.print(summary)
+
+    if not no_ascii:
+        if chart.sun:
+            render_sign_ascii(chart.sun.sign, "Sol")
+        if chart.moon:
+            render_sign_ascii(chart.moon.sign, "Luna")
+        render_sign_ascii(chart.ascendant, "Ascendente")
 
     prompt = build_interpretation_prompt(birth_data, chart)
     llm_client = OllamaClient(base_url=ollama_url)
