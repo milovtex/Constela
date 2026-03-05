@@ -7,8 +7,8 @@ class BirthData:
     birth_date: str
     birth_time: str
     city: str
-    country: str
-    timezone: str
+    country: str | None = None
+    timezone: str | None = None
     latitude: float | None = None
     longitude: float | None = None
 

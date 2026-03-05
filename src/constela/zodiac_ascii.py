@@ -89,6 +89,21 @@ _ALIASES = {
     "scorpius": "scorpio",
 }
 
+_SYMBOLS = {
+    "aries": "♈",
+    "taurus": "♉",
+    "gemini": "♊",
+    "cancer": "♋",
+    "leo": "♌",
+    "virgo": "♍",
+    "libra": "♎",
+    "scorpio": "♏",
+    "sagittarius": "♐",
+    "capricorn": "♑",
+    "aquarius": "♒",
+    "pisces": "♓",
+}
+
 
 def normalize_sign(sign: str | None) -> str | None:
     if not sign:
@@ -104,4 +119,6 @@ def render_sign_ascii(sign: str | None, label: str) -> None:
     art = ZODIAC_ASCII.get(key)
     if not art:
         return
-    console.print(Panel.fit(art, title=label, border_style="bright_blue"))
+    symbol = _SYMBOLS.get(key, "✦")
+    title = f"{label} {symbol}  {key.capitalize()}"
+    console.print(Panel.fit(f"[bold bright_cyan]{art}[/bold bright_cyan]", title=title, border_style="bright_magenta"))

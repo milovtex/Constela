@@ -1,0 +1,103 @@
+Metadata-Version: 2.4
+Name: constela
+Version: 0.1.0
+Summary: CLI para calcular y interpretar carta astral con LLM open source
+Author: Constela Contributors
+License: MIT License
+        
+        Copyright (c) 2026 milovtex
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer>=0.12.0
+Requires-Dist: rich>=13.7.0
+Requires-Dist: kerykeion>=4.0.0
+Dynamic: license-file
+
+# Constela
+
+Constela es una aplicacion CLI en Python para calcular cartas astrales y generar interpretaciones personalizadas usando un LLM open source.
+
+## Contexto General
+
+El objetivo del proyecto es combinar calculo astrologico estructurado con una experiencia de terminal moderna:
+
+- Entrada guiada de datos natales (fecha, hora y lugar).
+- Calculo de carta natal (planetas, casas y aspectos clave).
+- Construccion de contexto en formato estructurado para el LLM.
+- Interpretacion clara para usuario final en secciones utiles.
+- Salida enriquecida en CLI con colores, paneles y ASCII.
+
+## MVP
+
+El primer entregable se enfoca en:
+
+1. Comando principal `constela natal`.
+2. Flujo interactivo para capturar datos natales.
+3. Motor de calculo astrologico para carta natal.
+4. Integracion con LLM local para interpretar resultados.
+5. Render en terminal con una presentacion visual cuidada.
+
+## Stack Inicial Propuesto
+
+- Python 3.11+
+- CLI: Typer + Rich
+- Astrologia: Kerykeion
+- LLM local: Ollama
+- Modelo inicial sugerido: Qwen3-8B (ajustable segun hardware)
+
+## Vision de Producto
+
+Constela busca evolucionar de un lector de carta natal a un asistente astrologico CLI con modulos como:
+
+- Transitos
+- Sinastria
+- Retorno solar
+- Reportes exportables
+- Historial de lecturas
+
+## Estado
+
+En fase inicial. Se esta definiendo arquitectura, alcance del MVP y experiencia de usuario en terminal.
+
+## Quickstart
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+ollama serve
+ollama pull qwen3:8b
+constela natal
+```
+
+Puedes cambiar modelo o endpoint:
+
+```bash
+constela natal --model qwen3:8b --ollama-url http://localhost:11434
+```
+
+Para desactivar los paneles ASCII de signos:
+
+```bash
+constela natal --no-ascii
+```

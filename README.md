@@ -55,6 +55,13 @@ ollama pull qwen3:8b
 constela natal
 ```
 
+El flujo MVP pide solo ciudad; Constela intenta resolver ubicación y zona horaria automáticamente y te pide confirmación antes de calcular.
+Si alguna ciudad no se puede resolver, puedes usar un usuario de GeoNames como respaldo:
+
+```bash
+export KERYKEION_GEONAMES_USERNAME="tu_usuario_geonames"
+```
+
 Puedes cambiar modelo o endpoint:
 
 ```bash
