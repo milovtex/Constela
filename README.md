@@ -43,3 +43,12 @@ Constela busca evolucionar de un lector de carta natal a un asistente astrologic
 ## Estado
 
 En fase inicial. Se esta definiendo arquitectura, alcance del MVP y experiencia de usuario en terminal.
+
+## Quickstart
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+constela natal
+```
